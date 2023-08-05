@@ -4,6 +4,9 @@ pipeline {
         stage('Check Internet Speed') {
             steps {
                 script {
+                    
+                    pip install speedtest-cli
+
                     def speedTestResult = sh(script: "speedtest-cli --json", returnStdout: true).trim()
 
                     def speedTestJson = new groovy.json.JsonSlurperClassic().parseText(speedTestResult)
